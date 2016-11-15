@@ -64,7 +64,16 @@
 		<property name="order" value="1" />
 	</bean>
 
-
+		<!-- 6. MessageSource -->
+		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="basenames">
+			<list>
+				<value>messages/message_ko</value>
+			</list>
+		</property>
+		</bean>
+	
 
 
 </beans>

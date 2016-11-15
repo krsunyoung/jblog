@@ -1,10 +1,17 @@
 package com.bit2016.jblog.vo;
 
-public class UserVo {
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
+public class UserVo {
+	
 	private long no;
+	@NotEmpty
+	@Length(min=2, max=20)
 	private String id;
+	@NotEmpty
 	private String name;
+	@NotEmpty
 	private String password;
 	private String reg_date;
 	public long getNo() {

@@ -11,9 +11,6 @@
 		<![CDATA[
 		insert INTO USERS VALUES (#{no }, #{id },#{name },#{password },sysdate)
 		]]>
-		<![CDATA[
-		insert INTO blog VALUES (#{no }, #{id },#{logo })
-		]]>
 		
 	</insert>
 	
@@ -22,5 +19,12 @@
 	select id, password from users where id=#{id }
 	]]>
 	</select>
+
+	<select id="getById" parameterType="string" resultType="uservo">
+	<![CDATA[
+	select id, password, no, name from users where id=#{id }
+	]]>
+	</select>
+	
 
 </mapper>

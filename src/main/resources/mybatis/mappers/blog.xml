@@ -3,11 +3,12 @@
 
 <mapper namespace="blog">
 
-	<insert id="insert" parameterType="com.bit2016.jblog.vo.BlogVo">
+	<insert id="create" parameterType="Long">
 		
 		<![CDATA[
-		insert INTO Blog VALUES (#{no }, #{title },#{logo })
+		insert INTO Blog VALUES (#{no }, '블로그명','logo.jpg')
 		]]>
 	</insert>
 	
 </mapper>
+

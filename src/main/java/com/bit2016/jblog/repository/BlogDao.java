@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.bit2016.jblog.vo.BlogVo;
+import com.bit2016.jblog.vo.UserVo;
 
 @Repository
 public class BlogDao {
@@ -12,8 +12,8 @@ public class BlogDao {
 		@Autowired
 		private SqlSession sqlSession;
 		
-		public void insert(BlogVo vo){
-			sqlSession.insert("blog.insert",vo);
+		public void insert(Long no){
+			sqlSession.insert("blog.create", no);
 		}
 		
 }

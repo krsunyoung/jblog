@@ -14,19 +14,21 @@ public class UserDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
 
-	public Long insert(UserVo vo){
-		sqlSession.insert("user.insert",vo);
+	public Long insert(UserVo vo) {
+		sqlSession.insert("user.insert", vo);
 		return vo.getNo();
 	}
-	
-	public UserVo get(String id, String password	) {
-		Map<String , Object> map=new HashMap<String, Object>();
-		map.put("id",id);
-		map.put("password",password);
-		
-		return sqlSession.selectOne("user.getByidAndPassword",map);
-		//one인데 list를 하면 에러가 난다. 
+
+	public UserVo get(String id, String password) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("password", password);
+
+		return sqlSession.selectOne("user.getByidAndPassword", map);
+	}
+
+	public UserVo get(String id) {
+		return sqlSession.selectOne("user.getByid", id);
 	}
 }
