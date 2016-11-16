@@ -2,10 +2,10 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:mvc="http://www.springframework.org/schema/mvc">
 
 	<!-- auto proxy -->
@@ -32,9 +32,12 @@
 					</list>
 				</property>
 			</bean>
-
 		</mvc:message-converters>
 
+		<!-- argument resolver -->
+		<mvc:argument-resolvers>
+			<bean class="com.bit2016.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 햔들러 -->
@@ -64,16 +67,40 @@
 		<property name="order" value="1" />
 	</bean>
 
-		<!-- 6. MessageSource -->
-		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="defaultEncoding" value="utf-8"/>
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<!-- <mvc:interceptor> <mvc:mapping path="/board/**" /> <bean class="com.bit2016.mysite.interceptor.MyInterceptor2" 
+			/> </mvc:interceptor> -->
+			
+		<mvc:interceptor>
+			<mvc:mapping path="/user/login" />
+			<bean class="com.bit2016.security.AuthLoginInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.bit2016.security.AuthLogoutInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="/assets/**" />
+			<bean class="com.bit2016.security.AuthIntercetor" />
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+
+	<!-- 6. MessageSource -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8" />
 		<property name="basenames">
 			<list>
 				<value>messages/message_ko</value>
 			</list>
 		</property>
-		</bean>
-	
-
+	</bean>
 
 </beans>

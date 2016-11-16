@@ -4,7 +4,7 @@
 <mapper namespace="user">
 
 
-	<insert id="insert" parameterType="com.bit2016.jblog.vo.UserVo">
+	<insert id="insert" parameterType="uservo">
 	<selectKey keyProperty="no" resultType="long" order="BEFORE">
 		select users_seq.nextval from dual
 	</selectKey>
@@ -14,15 +14,15 @@
 		
 	</insert>
 	
-	<select id="getByidAndPassword" parameterType="com.bit2016.jblog.vo.UserVo">
+	<select id="getByidAndPassword" parameterType="string" resultType="uservo">
 	<![CDATA[
-	select id, password from users where id=#{id }
+	select id, password,no,reg_date from users where id=#{id }
 	]]>
 	</select>
 
 	<select id="getById" parameterType="string" resultType="uservo">
 	<![CDATA[
-	select id, password, no, name from users where id=#{id }
+		select no,id from users where id=#{id }
 	]]>
 	</select>
 	

@@ -23,7 +23,7 @@ public class UserService {
 	}
 
 	public boolean idExist(String id){
-		return userDao.get(id) != null ;
+		return (userDao.get(id)!=null);
 	}
 
 	

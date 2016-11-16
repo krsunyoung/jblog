@@ -19,16 +19,16 @@ public class UserDao {
 		sqlSession.insert("user.insert", vo);
 		return vo.getNo();
 	}
-
+	//로그인
 	public UserVo get(String id, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("password", password);
-
 		return sqlSession.selectOne("user.getByidAndPassword", map);
 	}
 
 	public UserVo get(String id) {
-		return sqlSession.selectOne("user.getByid", id);
+		return sqlSession.selectOne("user.getById", id);
 	}
+
 }

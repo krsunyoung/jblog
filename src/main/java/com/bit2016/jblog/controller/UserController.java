@@ -53,28 +53,28 @@ public class UserController {
 	public String joinsuccess(){
 		return "user/joinsuccess";
 	}
-	
-	@RequestMapping("/login")
-	public String login(
-			@RequestParam(value="id", required=true, defaultValue=" ") String id,
-			@RequestParam(value="password", required=true, defaultValue=" ") String password,
-			HttpSession session){
-		UserVo userVo = userService.login(id, password);
-		if(userVo == null){
-			return "redirect:/user/loginform?result=fail";
-		}
-		//인증성공 (처리)
-		session.setAttribute("authUser", userVo);
-		return "redirect:/";
-	}
-	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session){
-		session.removeAttribute("authUser");
-		session.invalidate();
-		return "redirect:/";
-	}
-	
+
+//	@RequestMapping("/login")
+//	public String login(
+//			@RequestParam(value="id", required=true, defaultValue=" ") String id,
+//			@RequestParam(value="password", required=true, defaultValue=" ") String password,
+//			HttpSession session){
+//		UserVo userVo = userService.login(id, password);
+//		if(userVo == null){
+//			return "redirect:/user/loginform?result=fail";
+//		}
+//		System.out.println(userVo.getId());
+//		//인증성공 (처리)
+//		session.setAttribute("authUser", userVo);
+//		return "redirect:/";
+//	}
+//	
+//	@RequestMapping("/logout")
+//	public String logout(HttpSession session){
+//		session.removeAttribute("authUser");
+//		session.invalidate();
+//		return "redirect:/";
+//	}
 	
 	
 }
