@@ -1,6 +1,5 @@
 package com.bit2016.jblog.controller;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bit2016.jblog.Service.BlogService;
 import com.bit2016.jblog.Service.UserService;
@@ -43,6 +41,7 @@ public class UserController {
 			model.addAllAttributes(result.getModel());
 			return "user/join";
 		}
+		
 		Long no = userService.join(userVo);
 		blogService.insert(no);
 		return "redirect:/user/joinsuccess";

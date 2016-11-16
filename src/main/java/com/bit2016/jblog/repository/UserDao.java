@@ -30,5 +30,9 @@ public class UserDao {
 	public UserVo get(String id) {
 		return sqlSession.selectOne("user.getById", id);
 	}
-
+	
+	public UserVo getByNo(String no) {
+		return sqlSession.selectOne("user.getById",no);
+	}
+	
 }

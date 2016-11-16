@@ -14,9 +14,9 @@
 		
 	</insert>
 	
-	<select id="getByidAndPassword" parameterType="string" resultType="uservo">
+	<select id="getByidAndPassword" parameterType="map" resultType="uservo">
 	<![CDATA[
-	select id, password,no,reg_date from users where id=#{id }
+	select id, password,no,reg_date from users where id=#{id } and password=#{password }
 	]]>
 	</select>
 
@@ -25,6 +25,8 @@
 		select no,id from users where id=#{id }
 	]]>
 	</select>
+	
+	
 	
 
 </mapper>
