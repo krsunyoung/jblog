@@ -13,23 +13,7 @@
 	<div id="container">
 		<div id="header">
 			<h1>Spring 이야기</h1>
-			<ul class="menu">
-			<c:choose>
-				<c:when test="${empty authUser }" >
-				<li><a href="${pageContext.request.contextPath }/user/loginform">로그인  </a><li>
-				<li><a href="${pageContext.request.contextPath }/user/joinform">회원가입</a><li>
-				</c:when>
-				<c:when test="${userId == authUser.id }">
-				<li><a href="${pageContext.request.contextPath }/blog/${authUser.id }">블로그관리</a><li>
-				<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a><li>
-				</c:when>
-				<c:otherwise>
-				<li><a href="${pageContext.request.contextPath }/blog/${authUser.id }">내 블로그</a><li>
-				<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a><li>
-				</c:otherwise>
-				
-			</c:choose>
-		</ul>
+			<c:import url="/WEB-INF/views/includes/adminheader.jsp"/>
 		</div>
 		<div id="wrapper">
 			<div id="content">
@@ -61,10 +45,9 @@
 		<div id="navigation">
 			<h2>카테고리</h2>
 			<ul>
-				<li><a href="">닥치고 스프링</a></li>
-				<li><a href="">스프링 스터디</a></li>
-				<li><a href="">스프링 프로젝트</a></li>
-				<li><a href="">기타</a></li>
+				<c:forEach items="${list }" var="vo">
+					<li><a href="">${vo.name }</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 		

@@ -9,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bit2016.jblog.Service.BlogService;
 import com.bit2016.jblog.Service.UserService;
+import com.bit2016.jblog.vo.CategoryVo;
 import com.bit2016.jblog.vo.UserVo;
 
 @Controller
@@ -19,8 +19,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private BlogService blogService;
+//	@Autowired
+//	private BlogService blogService;
 	
 	//로그인 폼 이동 
 	@RequestMapping("/loginform")
@@ -34,16 +34,16 @@ public class UserController {
 	}
 	//회원가입
 	@RequestMapping("/join")
-	public String join(@ModelAttribute @Valid UserVo userVo,
-			BindingResult result,
-			Model model){ 
+	public String join(@ModelAttribute @Valid UserVo userVo, 
+			@ModelAttribute CategoryVo categoryVo,
+			BindingResult result, Model model){ 
 		if(result.hasErrors()){
 			model.addAllAttributes(result.getModel());
 			return "user/join";
 		}
-		
 		Long no = userService.join(userVo);
-		blogService.insert(no);
+		userService.insert(no);
+		userService.cainsert(no);
 		return "redirect:/user/joinsuccess";
 	}
 	
@@ -53,27 +53,6 @@ public class UserController {
 		return "user/joinsuccess";
 	}
 
-//	@RequestMapping("/login")
-//	public String login(
-//			@RequestParam(value="id", required=true, defaultValue=" ") String id,
-//			@RequestParam(value="password", required=true, defaultValue=" ") String password,
-//			HttpSession session){
-//		UserVo userVo = userService.login(id, password);
-//		if(userVo == null){
-//			return "redirect:/user/loginform?result=fail";
-//		}
-//		System.out.println(userVo.getId());
-//		//인증성공 (처리)
-//		session.setAttribute("authUser", userVo);
-//		return "redirect:/";
-//	}
-//	
-//	@RequestMapping("/logout")
-//	public String logout(HttpSession session){
-//		session.removeAttribute("authUser");
-//		session.invalidate();
-//		return "redirect:/";
-//	}
-	
+
 	
 }

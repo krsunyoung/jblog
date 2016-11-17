@@ -13,14 +13,16 @@
 	<div id="container">
 		<div id="header">
 			<h1>Spring 이야기</h1>
-			<c:import url="/WEB-INF/views/includes/header.jsp"/>
+			<ul class="admin-menu">
+					<li><a href="${pageContext.request.contextPath }/${authUser.id }">내블로그</a><li>
+					<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/category">글 작성</a><li>
+					<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a><li>
+				</ul>
 		</div>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
 					<li class="selected">기본설정</li>
-					<li><a href="">카테고리</a></li>
-					<li><a href="">글작성</a></li>
 				</ul>
 				<form action="" method="post">
 	 		      	<table class="admin-config">

@@ -4,7 +4,7 @@
 	<typeAliases>
 	 	<typeAlias alias="uservo" type="com.bit2016.jblog.vo.UserVo"/>  
 	 	<typeAlias alias="blogvo" type="com.bit2016.jblog.vo.BlogVo"/>  
-	 	<typeAlias alias="category" type="com.bit2016.jblog.vo.CategoryVo"/>  
+	 	<typeAlias alias="categoryvo" type="com.bit2016.jblog.vo.CategoryVo"/>  
 	</typeAliases>
 	
 	<mappers>
