@@ -10,5 +10,17 @@
 		]]>
 	</insert>
 	
+	<insert id="imagaeupdate" parameterType="string">
+		<![CDATA[
+		update blog set LOGO=#{logo}
+		]]>
+	</insert>
+	
+	<insert id="nameupdate" parameterType="blogvo">
+		<![CDATA[
+		update blog set name=#{name}
+		]]>
+	</insert>
+	
 </mapper>
 

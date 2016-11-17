@@ -14,4 +14,9 @@ public class BlogDao {
 			sqlSession.insert("blog.create", no);
 		}
 		
+		public int imageinsert(String logo){
+			
+			return sqlSession.update("blog.imagaeupdate",logo);
+		}
+		
 }

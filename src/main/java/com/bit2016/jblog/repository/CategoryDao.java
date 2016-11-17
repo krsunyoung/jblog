@@ -19,7 +19,6 @@ public class CategoryDao {
 	}
 	
 	public List<CategoryVo> getList(String userId) {
-		System.out.println(sqlSession.selectList("category.getList", "123"));
 		return sqlSession.selectList("category.getList", userId);
 	}
 	
