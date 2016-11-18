@@ -18,12 +18,12 @@ import com.bit2016.jblog.vo.CategoryVo;
 @Service
 public class BlogService {
 	private static final String SAVE_PATH = "/upload";
-	public static final String BASE_URL = "/gallery/assets/";
+	public static final String URL = "/gallery/assets/";
 
 	@Autowired
-	private BlogDao blogDao;
-	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private BlogDao blogDao;
 
 	@Autowired
 	private CategoryDao categoryDao;
@@ -31,15 +31,39 @@ public class BlogService {
 	public List<CategoryVo> getList(String userId) {
 		return categoryDao.getList(userId);
 	}
-
+	public void titleUpdate(BlogVo vo){
+		 blogDao.titleUpdate(vo);
+	}
 	public boolean getByNo(String id) {
 		return (userDao.getByNo(id) != null);
 	}
-
+	
+	public BlogVo getID(String id){
+		BlogVo blogVo = blogDao.getID(id);
+		
+		return blogVo;
+	}
+	
 	public void restore( BlogVo blogVo, MultipartFile multipartFile )
 	{
-		
-		
+		//String url = null;
+			try { 
+		 		String orgFileName = multipartFile.getOriginalFilename(); 
+		 		String fileExtName = orgFileName.substring(orgFileName.lastIndexOf('.')+1, orgFileName.length()); 
+		 		String saveFileName = generateSaveFileName(fileExtName); 
+		 
+		 		writeFile(multipartFile, saveFileName); 
+		 		 
+		 		blogVo.setLogo(saveFileName);
+		 		System.out.println(saveFileName);
+		 	
+		 		blogDao.imageupdate(blogVo); 
+		 		
+		 //		url = URL+saveFileName;
+		 		 
+		 		} catch (IOException ex) { 
+		 			throw new RuntimeException(); 
+		 		} 
 	}
 
 	private void writeFile(MultipartFile multipartFile, String saveFileName) throws IOException {

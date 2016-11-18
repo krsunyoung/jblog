@@ -4,23 +4,26 @@
 <mapper namespace="blog">
 
 	<insert id="create" parameterType="Long">
-		
 		<![CDATA[
 		insert INTO Blog VALUES (#{no }, '블로그명','logo.jpg')
 		]]>
 	</insert>
 	
-	<insert id="imagaeupdate" parameterType="string">
+	<insert id="imageupdate" parameterType="map">
 		<![CDATA[
-		update blog set LOGO=#{logo}
+		update blog set LOGO=#{logo} where no=#{no }
 		]]>
 	</insert>
 	
-	<insert id="nameupdate" parameterType="blogvo">
+	<insert id="titleUpdate" parameterType="string">
 		<![CDATA[
-		update blog set name=#{name}
+		update BLOG SET TITLE=#{title } WHERE NO=(select no from users where id=#{id })
 		]]>
 	</insert>
-	
+	<select id="getID" parameterType="string" resultType="blogvo" >
+		<![CDATA[
+		select title, logo   from blog b, users u where b.no=u.no and u.id=#{id } 
+		]]>
+	</select>
 </mapper>
 

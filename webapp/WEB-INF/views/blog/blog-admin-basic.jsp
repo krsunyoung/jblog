@@ -24,7 +24,7 @@
 				<ul class="admin-menu">
 					<li class="selected">기본설정</li>
 				</ul>
-				<form action="" method="post">
+				<form action="${pageContext.request.contextPath }/${authUser.id }/admin/upload" method="post">
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
@@ -40,7 +40,8 @@
 			      		</tr>           		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td class="s"><input type="submit" value="기본설정 변경"></td>      			
+			      			<td class="s">
+			      			<input type="submit" value="기본설정 변경"></td>      			
 			      		</tr>           		
 			      	</table>
 				</form>
