@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,12 @@ public class BlogService {
 	public List<CategoryVo> getList(String userId) {
 		return categoryDao.getList(userId);
 	}
-	public void titleUpdate(BlogVo vo){
-		 blogDao.titleUpdate(vo);
+	public void titleUpdate(BlogVo vo,String id ){
+		
+		String title = vo.getTitle();
+		blogDao.titleUpdate(title, id);
+		
+		 
 	}
 	public boolean getByNo(String id) {
 		return (userDao.getByNo(id) != null);

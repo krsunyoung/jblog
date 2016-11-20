@@ -58,7 +58,7 @@ public class BlogController {
 			@ModelAttribute BlogVo blogVo){
 		
 		blogVo.setUsers_no(authUser.getNo());
-		blogService.titleUpdate(blogVo);
+		blogService.titleUpdate(blogVo, userId);
 		model.addAttribute(blogVo.getTitle());
 		
 		return "/";

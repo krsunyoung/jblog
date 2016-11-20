@@ -15,14 +15,15 @@
 		]]>
 	</insert>
 	
-	<insert id="titleUpdate" parameterType="string">
+	<insert id="titleUpdate" parameterType="map" >
 		<![CDATA[
-		update BLOG SET TITLE=#{title } WHERE NO=(select no from users where id=#{id })
+		update BLOG b SET TITLE=#{title} WHERE b.NO=(select no from users u where u.id=#{id})
 		]]>
 	</insert>
+	
 	<select id="getID" parameterType="string" resultType="blogvo" >
 		<![CDATA[
-		select title, logo   from blog b, users u where b.no=u.no and u.id=#{id } 
+		select title, logo from blog b, users u where b.no=u.no and u.id=#{id } 
 		]]>
 	</select>
 </mapper>

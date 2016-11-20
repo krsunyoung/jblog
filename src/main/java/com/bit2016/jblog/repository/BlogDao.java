@@ -1,5 +1,8 @@
 package com.bit2016.jblog.repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +19,13 @@ public class BlogDao {
 			sqlSession.insert("blog.create", no);
 		}
 		
-		public void titleUpdate(BlogVo vo){
-			sqlSession.update("blog.titleUpdate",vo	);
+		public void titleUpdate(String title, String id){
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("title", title);
+			map.put("blog.getID", id);
+			System.out.println(id);
+			System.out.println(title);
+			sqlSession.update("blog.titleUpdate",map);
 		}
 		
 		public int imageupdate(BlogVo vo){
