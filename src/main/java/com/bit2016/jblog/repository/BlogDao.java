@@ -22,7 +22,7 @@ public class BlogDao {
 		public void titleUpdate(String title, String id){
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("title", title);
-			map.put("blog.getID", id);
+			map.put("id", id);
 			System.out.println(id);
 			System.out.println(title);
 			sqlSession.update("blog.titleUpdate",map);

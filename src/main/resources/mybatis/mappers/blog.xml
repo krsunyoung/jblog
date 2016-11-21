@@ -23,7 +23,7 @@
 	
 	<select id="getID" parameterType="string" resultType="blogvo" >
 		<![CDATA[
-		select title, logo from blog b, users u where b.no=u.no and u.id=#{id } 
+		select title, logo, b.no, id  from blog b, users u where b.no=u.no and u.id=#{id } 
 		]]>
 	</select>
 </mapper>

@@ -18,7 +18,7 @@ import com.bit2016.security.Auth;
 import com.bit2016.security.AuthUser;
 
 @Controller
-@RequestMapping("/{userId}")
+@RequestMapping("/{userId:(?!assets).*}")
 public class BlogController {
 
 	@Autowired
@@ -57,11 +57,14 @@ public class BlogController {
 			@AuthUser UserVo authUser,
 			@ModelAttribute BlogVo blogVo){
 		
+		
 		blogVo.setUsers_no(authUser.getNo());
 		blogService.titleUpdate(blogVo, userId);
-		model.addAttribute(blogVo.getTitle());
+//		model.addAttribute(blogVo.getTitle());
+		model.addAttribute("userId", userId);
 		
-		return "/";
+		return "redirect:/{userId}";
+		
 	}
 	
 	
