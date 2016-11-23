@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bit2016.jblog.Service.BlogService;
 import com.bit2016.jblog.vo.BlogVo;
@@ -55,12 +57,14 @@ public class BlogController {
 	public String adminUpdate(@PathVariable String userId,
 			Model model,
 			@AuthUser UserVo authUser,
-			@ModelAttribute BlogVo blogVo){
-		
+			@ModelAttribute BlogVo blogVo,
+			@RequestParam( "file" ) MultipartFile multipartFile){
 		
 		blogVo.setUsers_no(authUser.getNo());
-		blogService.titleUpdate(blogVo, userId);
-//		model.addAttribute(blogVo.getTitle());
+		blogService.basicUpdate(blogVo, userId);
+		System.out.println("-------");
+		blogService.restore(blogVo, multipartFile, userId);
+		
 		model.addAttribute("userId", userId);
 		
 		return "redirect:/{userId}";

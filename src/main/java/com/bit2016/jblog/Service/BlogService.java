@@ -32,7 +32,7 @@ public class BlogService {
 	public List<CategoryVo> getList(String userId) {
 		return categoryDao.getList(userId);
 	}
-	public void titleUpdate(BlogVo vo,String id ){
+	public void basicUpdate(BlogVo vo,String id ){
 		
 		String title = vo.getTitle();
 		blogDao.titleUpdate(title, id);
@@ -49,9 +49,8 @@ public class BlogService {
 		return blogVo;
 	}
 	
-	public void restore( BlogVo blogVo, MultipartFile multipartFile )
+	public void restore( BlogVo blogVo, MultipartFile multipartFile, String id )
 	{
-		//String url = null;
 			try { 
 		 		String orgFileName = multipartFile.getOriginalFilename(); 
 		 		String fileExtName = orgFileName.substring(orgFileName.lastIndexOf('.')+1, orgFileName.length()); 
@@ -60,11 +59,10 @@ public class BlogService {
 		 		writeFile(multipartFile, saveFileName); 
 		 		 
 		 		blogVo.setLogo(saveFileName);
-		 		System.out.println(saveFileName);
-		 	
-		 		blogDao.imageupdate(blogVo); 
+		 		String Logo = blogVo.getLogo();
+		 		System.out.println(Logo);
+		 		blogDao.imageupdate(Logo, id ); 
 		 		
-		 //		url = URL+saveFileName;
 		 		 
 		 		} catch (IOException ex) { 
 		 			throw new RuntimeException(); 

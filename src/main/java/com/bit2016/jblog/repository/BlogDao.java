@@ -28,8 +28,11 @@ public class BlogDao {
 			sqlSession.update("blog.titleUpdate",map);
 		}
 		
-		public int imageupdate(BlogVo vo){
-			return sqlSession.update("blog.imagaeupdate",vo);
+		public void imageupdate(String Logo, String id){
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("Logo", Logo);
+			map.put("id", id);
+			sqlSession.update("blog.imagaeupdate",map);
 		}
 		
 		public BlogVo getID(String id){

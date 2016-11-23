@@ -24,7 +24,7 @@
 				<ul class="admin-menu">
 					<li class="selected">기본설정</li>
 				</ul>
-				<form action="${pageContext.request.contextPath }/${authUser.id }/admin/upload" method="post">
+				<form action="${pageContext.request.contextPath }/${authUser.id }/admin/upload" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
@@ -32,11 +32,11 @@
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>      			
+			      			<td><img src="${pageContext.request.contextPath}/assets/images/logo.jpg"></td>      			
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td><input type="file" name="logo-file"></td>      			
+			      			<td><input type="file" name="file"></td>      			
 			      		</tr>           		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
